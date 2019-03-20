@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Constants } from '../../services/constants';
+import { Platform } from 'ionic-angular';
 
 /*
   Generated class for the ApiServiceProvider provider.
@@ -11,13 +12,18 @@ import { Constants } from '../../services/constants';
 @Injectable()
 export class ApiServiceProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public platform: Platform) {
     console.log('Hello ApiServiceProvider Provider');
   }
 
   postData(data, url) {
     return new Promise((resolve, reject) => {
-      this.http.post(Constants.API_ENDPOINT + url, data)
+      let endpoint = Constants.API_ENDPOINT;
+      if(!this.platform.is('cordova')){
+        endpoint = Constants.LOCAL_API_ENDPOINT;
+      }
+
+      this.http.post(endpoint + url, data)
         .subscribe(res => {
           resolve(res);
         }, (err) => {
@@ -28,14 +34,19 @@ export class ApiServiceProvider {
 
   getData(data, url){
     return new Promise((resolve, reject) => {
-
       var str = [];
-      for (var p in data)
+      for (var p in data){
         if (data.hasOwnProperty(p)) {
           str.push(encodeURIComponent(p) + "=" + encodeURIComponent(data[p]));
         }
+      }
 
-      this.http.get(Constants.API_ENDPOINT + url+'?'+str.join("&"))
+      let endpoint = Constants.API_ENDPOINT;
+      if(!this.platform.is('cordova')){
+        endpoint = Constants.LOCAL_API_ENDPOINT;
+      }
+
+      this.http.get(endpoint + url+'?'+str.join("&"))
         .subscribe(res => {
           resolve(res);
         }, (err) => {
