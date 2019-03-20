@@ -86,14 +86,12 @@ export class LoginPage {
           let userArray = {
             userId: this.responseData.user.id,
             userEmail: this.responseData.user.email,
-            userName: this.responseData.user.name,
-            userType: this.responseData.user.user_type_id
+            userName: this.responseData.user.name
           };
 
           this.storage.set(Constants.userLoggedInKey, userArray);
           this.showLoginFailText = false;
           this.events.publish('setBalance', '$' + parseFloat(this.responseData.user.amount).toFixed(2));
-          this.events.publish('setMenuItems', this.responseData.user.user_type_id == 2 ? 'user' : 'store');
           this.navCtrl.setRoot(HomePage);
         }
         else {

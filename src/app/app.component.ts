@@ -11,7 +11,6 @@ import { HomePage } from '../pages/home/home';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { TransactionsPage } from '../pages/transactions/transactions';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,9 +29,12 @@ export class MyApp {
     public apiService : ApiServiceProvider, public loadingCtrl: LoadingController, public events : Events, public helper : HelperService) {
     this.initializeApp();
 
-    events.subscribe('setMenuItems', userType => {
-      this.setMenuItems(userType);
-    });
+    this.pages = [
+      { title: 'Home', component: HomePage, type: 'root', icon: '' },
+      { title: 'Mi cuenta', component: AccountPage, type: 'push', icon: '' },
+      { title: 'Perfil', component: SignupPage, type: 'root', icon: '' },
+      { title: 'Logout', component: null, type: 'logout', icon: 'log-out' }
+    ];
 
     platform.ready().then(() => {
         this.storage.get(Constants.userLoggedInKey).then((value)=>{
@@ -49,7 +51,6 @@ export class MyApp {
             this.apiService.getData(data, 'users.php').then(result => {
               loading.dismiss();
               this.responseData = result;
-              this.setMenuItems(this.responseData.user.user_type_id == 2 ? 'user' : 'store');
               this.events.publish("setBalance", '$' + parseFloat(this.responseData.user.amount).toFixed(2));
             }, err => {
               loading.dismiss();
@@ -60,28 +61,6 @@ export class MyApp {
             this.nav.setRoot(LoginPage);
         });;
     });
-  }
-
-  setMenuItems(type){
-    if(type=='user'){
-      // used for an example of ngFor and navigation
-      this.pages = [
-        { title: 'Home', component: HomePage, type: 'root', icon: '' },
-        { title: 'Mi cuenta', component: AccountPage, type: 'push', icon: '' },
-        { title: 'Perfil', component: SignupPage, type: 'root', icon: '' },
-        { title: 'Logout', component: null, type: 'logout', icon: 'log-out' }
-      ];
-    }
-    else{
-      // used for an example of ngFor and navigation
-      this.pages = [
-        { title: 'Home', component: HomePage, type: 'root', icon: '' },
-        { title: 'Mi cuenta', component: AccountPage, type: 'push', icon: '' },
-        { title: 'Mis Ventas', component: TransactionsPage, type: 'push', icon: '' },
-        { title: 'Perfil', component: SignupPage, type: 'root', icon: '' },
-        { title: 'Logout', component: null, type: 'logout', icon: 'log-out' }
-      ];
-    }
   }
 
   initializeApp() {

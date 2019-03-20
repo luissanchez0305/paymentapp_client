@@ -1,11 +1,11 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Storage } from '@ionic/storage';
 import { Network } from '@ionic-native/network';
-import { Constants } from '../../services/constants';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 import { HelperService } from '../../providers/helper';
+import { Constants } from '../../services/constants';
+import { Storage } from '@ionic/storage';
 //import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 //import { Toast } from '@ionic-native/toast';
@@ -29,14 +29,12 @@ export class AccountPage {
   public responseData : any;
   public payResultText : string;
   public showPaymentResultText : boolean;
-  public showQRCode : boolean = false;
   public transactions : any;
   public userInfo: any;
-  public createdCode: any;
   public items: Array<{id: number, type: string, store: string, price: string, date: string}>;
 
-  constructor(public navCtrl: NavController, private storage: Storage, private formBuilder: FormBuilder, private network: Network, public navParams: NavParams,
-    public loadingCtrl: LoadingController, public apiService : ApiServiceProvider, public events : Events,
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private network: Network, public navParams: NavParams,
+    public loadingCtrl: LoadingController, public apiService : ApiServiceProvider, private storage: Storage, public events : Events,
     private zone: NgZone, private helper: HelperService /*, public barcoScanner: BarcodeScanner, private toast: Toast*/) {
     this.showPaymentResultText = false;
     this.payResultText = "";
@@ -64,10 +62,6 @@ export class AccountPage {
     this.storage.get(Constants.userLoggedInKey).then((value)=>{
       this.userInfo = value;
       this.updateTransactions();
-      if(this.userInfo.userType == '1'){
-        this.showQRCode = true;
-        this.createdCode = "{\"store\":\"" + this.userInfo.userName + "\",\"storeId\":\"" + this.userInfo.userId + "\"}";
-      }
     });
   }
 

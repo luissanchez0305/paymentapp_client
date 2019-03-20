@@ -32,11 +32,10 @@ export class SignupPage {
   public nameValue : string;
   public emailValue : string;
   public isUserLoggedIn : boolean = false;
-  public showLinkTagButton : boolean;
   public userInfo: any;
 
   constructor(public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private network: Network, private zone: NgZone,
-    public apiService : ApiServiceProvider, private nfc: NFC, private ndef: Ndef, public loadingCtrl: LoadingController, private formBuilder: FormBuilder, 
+    public apiService : ApiServiceProvider, private nfc: NFC, private ndef: Ndef, public loadingCtrl: LoadingController, private formBuilder: FormBuilder,
     public helper: HelperService, public events: Events, public platform: Platform, private toast: Toast) {
     this.isDeviceOnline = true;
     // watch network for a disconnect
@@ -63,8 +62,6 @@ export class SignupPage {
       if(value != null){
         this.isUserLoggedIn = true;
         this.userInfo = value;
-        if(value.userType == 2)
-          this.showLinkTagButton = true;
         let loading = this.loadingCtrl.create({
             content: 'Espere un momento...'
         });
@@ -130,6 +127,7 @@ export class SignupPage {
 
       let message = this.ndef.textRecord(this.userInfo.userEmail);
       this.nfc.share([message]).then(success => {
+        // TODO buscar si existe el tag en la bd y hacer login con ese id
         console.log(success);
       }).catch(err => {
         console.log(err);
@@ -168,8 +166,7 @@ export class SignupPage {
           let userArray = {
             userId: this.responseData.id,
             userName: this.responseData.user.name,
-            userEmail: this.responseData.user.email,
-            userType: this.responseData.user.user_type_id
+            userEmail: this.responseData.user.email
           };
 
           this.storage.set(Constants.userLoggedInKey, userArray);

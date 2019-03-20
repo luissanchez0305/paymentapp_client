@@ -1,7 +1,9 @@
 import { Component, NgZone } from '@angular/core';
 import { NavController, Events } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
+import { Storage } from '@ionic/storage';
 import { HelperService } from '../../providers/helper';
+import { Constants } from '../../services/constants';
 
 import { LoginPage } from '../login/login';
 import { AccountPage } from '../account/account';
@@ -16,8 +18,11 @@ export class HomePage {
   public isDeviceOnline : boolean;
   public balance : string;
   public showRefreshButton : boolean = false;
+  public showQRCode : boolean = false;
+  public createdCode: any;
+  public userInfo: any;
 
-  constructor(public navCtrl: NavController, private network: Network, public events : Events, private zone: NgZone,
+  constructor(public navCtrl: NavController, private storage: Storage, private network: Network, public events : Events, private zone: NgZone,
     public helper : HelperService) {
       this.balance = this.helper.balance;
       events.subscribe('setBalance', actualBalance => {
@@ -43,6 +48,16 @@ export class HomePage {
           this.isDeviceOnline = true;
         });
       });
+  }
+
+  ionViewDidLoad(){
+    this.storage.get(Constants.userLoggedInKey).then((value)=>{
+      if(value != null){
+        this.userInfo = value;
+        this.showQRCode = true;
+        this.createdCode = "{\"user\":\"" + this.userInfo.userName + "\",\"userId\":\"" + this.userInfo.userId + "\"}";
+      }
+    });
   }
 
   logout(){

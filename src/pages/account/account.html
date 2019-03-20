@@ -33,12 +33,6 @@
       </form>
     </div>
   </ion-item>
-  <ion-item *ngIf="showQRCode">
-    <h1>Código de venta</h1>
-    <div>
-      <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
-    </div>
-  </ion-item>
   <h1>Transacciones</h1>
   <ion-grid>
     <ion-row ion-item *ngFor="let item of items">

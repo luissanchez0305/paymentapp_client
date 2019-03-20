@@ -13,6 +13,14 @@
   <div>
     <p class="balance-title">Saldo actual</p>
     <p class="balance-number">{{ balance }}</p>
+
+    <ion-item *ngIf="showQRCode">
+      <h1>Código de venta</h1>
+      <div>
+        <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+      </div>
+    </ion-item>
+
     <button ion-button end color="primary" (click)="refreshBalance();" *ngIf="showRefreshButton"> RECARGAR CUENTA </button>
   </div>
   <button ion-button full color="secondary" (click)="reloadAccount();"> RECARGAR CUENTA </button>
