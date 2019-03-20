@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+  <ion-item class="no-conection" *ngIf="!isDeviceOnline">Sin conexión a internet</ion-item>
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    <p class="balance-title">Saldo actual</p>
+    <p class="balance-number">{{ balance }}</p>
+    <button ion-button end color="primary" (click)="refreshBalance();" *ngIf="showRefreshButton"> RECARGAR CUENTA </button>
+  </div>
+  <button ion-button full color="secondary" (click)="reloadAccount();"> RECARGAR CUENTA </button>
+
+  <button ion-button full color="secondary" (click)="makePayment();"> HAZ UN PAGO </button>
+</ion-content>

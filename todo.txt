@@ -1,0 +1,5 @@
+- crear boton de reclamo
+- crear procedimiento de recibir pago
+- hacer login de facebook
+- crear recibo de pago recibido
+- al hacer login verificar qeu solo sea tienda

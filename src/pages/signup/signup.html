@@ -1,0 +1,61 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>signup</ion-title>
+        <ion-buttons end *ngIf="isUserLoggedIn">
+          <button id="logout" (click)="logout()">
+            Logout
+          </button>
+        </ion-buttons>
+  </ion-navbar>
+  <ion-item class="no-conection" *ngIf="!isDeviceOnline">Sin conexión a internet</ion-item>
+
+</ion-header>
+
+
+<ion-content padding class="masters">
+
+    <ion-grid>
+      <ion-row *ngIf="!isUserLoggedIn">
+        <ion-col><button ion-button block class="facebookButton"> Facebook</button></ion-col>
+        <ion-col><button ion-button block class="instagramButton"> Instagram</button></ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button block *ngIf="showLinkTagButton" (click)="linkTag()">Enlazar Tag</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="hrLine" *ngIf="!isUserLoggedIn"><span>Or</span></div>
+    <form [formGroup]="register" (ngSubmit)="attemptUserRegister()">
+      <ion-list no-lines padding-top>
+        <ion-item>
+          <ion-input type="text" placeholder="Nombre" value="{{ nameValue }}" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="email" placeholder="Email" value="{{ emailValue }}" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="password" placeholder="Password" formControlName="pwd"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button block round color="secondary" type="submit" [disabled]="!register.valid" *ngIf="!isUserLoggedIn">Signup</button>
+      <button ion-button block round color="secondary" type="submit" [disabled]="!register.valid" *ngIf="isUserLoggedIn">Guardar</button>
+      <label class="error" *ngIf="showDuplicateText">Este correo ya existe, intente otro</label>
+      <ion-row><a center ion-link color="primary" (click)="cancel();" *ngIf="isUserLoggedIn">Cancel</a></ion-row>
+    </form>
+    <div padding *ngIf="!isUserLoggedIn">
+      <button ion-button block color="light" clear (click)="loginPage();">If already have an account ? LOGIN</button>
+      <button ion-button block color="light" clear (click)="forgotPasswordPage();">Forgot Password</button>
+    </div>
+
+</ion-content>

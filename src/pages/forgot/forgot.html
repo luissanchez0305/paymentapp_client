@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ForgotPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>forgot</ion-title>
+  </ion-navbar>
+  <ion-item class="no-conection" *ngIf="!isDeviceOnline">Sin conexión a internet</ion-item>
+
+</ion-header>
+
+
+<ion-content padding class="masters">
+    <div text-center><img src="assets/imgs/forgotpwd.png" width="100" ></div>
+    <form [formGroup]="forgot" (ngSubmit)="attemptUserForgot()">
+      <ion-list no-lines padding-top>
+        <ion-item *ngIf="!showSent">
+          <ion-input type="email" placeholder="Email Address" formControlName="email"></ion-input>
+        </ion-item>
+      </ion-list>
+      <button ion-button block round color="secondary" *ngIf="!showSent">Send</button>
+      <label class="lorems lorems-content" *ngIf="showSent">
+        Una nueva contraseña ha sido enviada a la direccion de correo que envio<br>Por favor, le recomendamos que la cambie tan pronto vuelva a entrar
+      </label>
+      <label class="error" *ngIf="showForgotFailText">{{ forgotFailText }} </label>
+    </form>
+
+    <div padding-top>
+    <button ion-button block color="light" clear (click)="loginPage();">If already have an account ? LOGIN</button>
+    <button ion-button block color="light" clear (click)="signupPage();">If new member ? SIGNUP</button>
+   </div>
+</ion-content>
