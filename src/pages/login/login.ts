@@ -78,6 +78,7 @@ export class LoginPage {
     var formData = new FormData();
     formData.append('u', this.login.value.email);
     formData.append('p', this.login.value.pwd);
+    formData.append('t', '2');
     this.apiService.postData(formData, 'access.php').then(result => {
         loading.dismiss();
         this.responseData = result;
@@ -99,7 +100,7 @@ export class LoginPage {
           this.showLoginFailText = true;
           this.loginFailText = (this.responseData.msg == 'no password' ?
                                   'Contraseña incorrecta' : (this.responseData.msg == 'no user' ?
-                                                                'Este usuario no existe' : 'Error desconocido'));
+                                                                'Este usuario no existe' : (this.responseData.msg == 'no platform' ? 'Plataforma incorrecta' : 'Error desconocido')));
         }
     });
   }
