@@ -52,6 +52,11 @@
 		D921FEA7FB9B4E7FBBD57A7E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA7B252EE1847EF8EF51936 /* QuartzCore.framework */; };
 		F0367739A6EF443F83F8DE69 /* NfcPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC960387B7044BA8537B805 /* NfcPlugin.m */; };
 		5BE7F19026914EC8A15B7DA9 /* CoreNFC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD500C7731DC4A2996BCDDB6 /* CoreNFC.framework */; };
+		622994253EDC4D1AAE9FA330 /* FacebookConnectPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 39491A4FD5884F2B847B6141 /* FacebookConnectPlugin.m */; };
+		894F9BE4147143E78229BBB2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348BBFC31F6A470F92730AF7 /* Bolts.framework */; };
+		B9C1648109874F17951972F6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5528451ABA314EE5A76F9912 /* FBSDKCoreKit.framework */; };
+		937921A255014AE9A9A4DCBF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC66F1E2C364499B07EBFB4 /* FBSDKLoginKit.framework */; };
+		313367212BF340D49FD62842 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F1BB33B9184D2F84B49E2A /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +162,12 @@
 		4AC960387B7044BA8537B805 /* NfcPlugin.m */ = {isa = PBXFileReference; name = "NfcPlugin.m"; path = "phonegap-nfc/NfcPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		D243E93323854086A7ECBD51 /* NfcPlugin.h */ = {isa = PBXFileReference; name = "NfcPlugin.h"; path = "phonegap-nfc/NfcPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		DD500C7731DC4A2996BCDDB6 /* CoreNFC.framework */ = {isa = PBXFileReference; name = "CoreNFC.framework"; path = "System/Library/Frameworks/CoreNFC.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		39491A4FD5884F2B847B6141 /* FacebookConnectPlugin.m */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.m"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		F09719C1839140EF87DC50B6 /* FacebookConnectPlugin.h */ = {isa = PBXFileReference; name = "FacebookConnectPlugin.h"; path = "cordova-plugin-facebook4/FacebookConnectPlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		348BBFC31F6A470F92730AF7 /* Bolts.framework */ = {isa = PBXFileReference; name = "Bolts.framework"; path = "paymentapp/Plugins/cordova-plugin-facebook4/Bolts.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		5528451ABA314EE5A76F9912 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; name = "FBSDKCoreKit.framework"; path = "paymentapp/Plugins/cordova-plugin-facebook4/FBSDKCoreKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		7CC66F1E2C364499B07EBFB4 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; name = "FBSDKLoginKit.framework"; path = "paymentapp/Plugins/cordova-plugin-facebook4/FBSDKLoginKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		31F1BB33B9184D2F84B49E2A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; name = "FBSDKShareKit.framework"; path = "paymentapp/Plugins/cordova-plugin-facebook4/FBSDKShareKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +183,10 @@
 				18B4DB3460714D48BCB1E6EF /* CoreTelephony.framework in Frameworks */,
 				D921FEA7FB9B4E7FBBD57A7E /* QuartzCore.framework in Frameworks */,
 				5BE7F19026914EC8A15B7DA9 /* CoreNFC.framework in Frameworks */,
+				894F9BE4147143E78229BBB2 /* Bolts.framework in Frameworks */,
+				B9C1648109874F17951972F6 /* FBSDKCoreKit.framework in Frameworks */,
+				937921A255014AE9A9A4DCBF /* FBSDKLoginKit.framework in Frameworks */,
+				313367212BF340D49FD62842 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +265,10 @@
 				1988360AF1214FDF9B3A040A /* CoreTelephony.framework */,
 				6CA7B252EE1847EF8EF51936 /* QuartzCore.framework */,
 				DD500C7731DC4A2996BCDDB6 /* CoreNFC.framework */,
+				348BBFC31F6A470F92730AF7 /* Bolts.framework */,
+				5528451ABA314EE5A76F9912 /* FBSDKCoreKit.framework */,
+				7CC66F1E2C364499B07EBFB4 /* FBSDKLoginKit.framework */,
+				31F1BB33B9184D2F84B49E2A /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -332,6 +351,8 @@
 				FE21E4C361E546A880299EF3 /* Toast.h */,
 				4AC960387B7044BA8537B805 /* NfcPlugin.m */,
 				D243E93323854086A7ECBD51 /* NfcPlugin.h */,
+				39491A4FD5884F2B847B6141 /* FacebookConnectPlugin.m */,
+				F09719C1839140EF87DC50B6 /* FacebookConnectPlugin.h */,
 			);
 			name = Plugins;
 			path = "paymentapp/Plugins";
@@ -473,6 +494,7 @@
 				EC683FA38F4A4A70A2344E78 /* Toast+UIView.m in Sources */,
 				4C5D4C859B2F4DAD8847B1F6 /* Toast.m in Sources */,
 				F0367739A6EF443F83F8DE69 /* NfcPlugin.m in Sources */,
+				622994253EDC4D1AAE9FA330 /* FacebookConnectPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +564,10 @@
 					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
 					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
 					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
+					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
+					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
+					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
+					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
 				);
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -571,6 +597,10 @@
 				PRODUCT_NAME = "paymentapp";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
+					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
+					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
+					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
 					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
 					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",
 					"\"paymentapp/Plugins/cordova-plugin-facebook4\"",

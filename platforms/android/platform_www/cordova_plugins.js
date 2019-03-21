@@ -94,6 +94,14 @@ module.exports = [
     "file": "plugins/phonegap-nfc/www/phonegap-nfc.js",
     "pluginId": "phonegap-nfc",
     "runs": true
+  },
+  {
+    "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
+    "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
+    "pluginId": "cordova-plugin-facebook4",
+    "clobbers": [
+      "facebookConnectPlugin"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -110,7 +118,8 @@ module.exports.metadata =
   "cordova-plugin-statusbar": "2.4.2",
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-plugin-x-toast": "2.7.2",
-  "phonegap-nfc": "1.0.3"
+  "phonegap-nfc": "1.0.3",
+  "cordova-plugin-facebook4": "4.2.1"
 };
 // BOTTOM OF METADATA
 });

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-//import { Facebook } from '@ionic-native/facebook';
+import { Facebook } from '@ionic-native/facebook/ngx';
 import { QRScanner } from '@ionic-native/qr-scanner';
 
 import { Toast } from '@ionic-native/toast';
@@ -66,7 +66,7 @@ import { NFC, Ndef } from '@ionic-native/nfc';
     SplashScreen,
     HelperService,
     Network,
-    //Facebook,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiServiceProvider,
     QRScanner,

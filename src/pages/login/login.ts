@@ -6,6 +6,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { ApiServiceProvider } from '../../providers/api-service/api-service';
 import { Constants } from '../../services/constants';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
@@ -29,9 +30,11 @@ export class LoginPage {
   public userInfo : any = {};
   public responseData : any;
   public loginFailText : string;
+  FB_APP_ID: number = 260676854593763;
 
-  constructor(public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private network: Network, private zone: NgZone,
-    /*private fb: Facebook,*/ private formBuilder: FormBuilder, public events : Events, public apiService : ApiServiceProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, private fb: Facebook, private storage: Storage, public navParams: NavParams, private network: Network,
+    private zone: NgZone, private formBuilder: FormBuilder, public events : Events, public apiService : ApiServiceProvider,
+    public loadingCtrl: LoadingController) {
     this.login = this.formBuilder.group({
       email: ['', Validators.required],
       pwd: ['', Validators.required],
@@ -60,14 +63,40 @@ export class LoginPage {
   forgotPasswordPage(){ this.navCtrl.setRoot(ForgotPage); }
 
   fbLogin(){
-    /*this.fb.login(['public_profile', 'email'])
-      .then(res => {
-        this.fb.api('me/?fields=id,email,first_name', ['public_profile', 'email']).then(apiRes => {
-          this.userInfo = apiRes;
-          this.isDeviceOnline = true;
-          alert('Logged into Facebook!')
-        }).catch(e => alert('Error api into Facebook'));
-    }).catch(e => alert('Error logging into Facebook'  + e));*/
+    let loading = this.loadingCtrl.create({
+      content: 'Espere un momento...'
+    });
+    loading.present();
+    //let permissions = new Array<string>();
+
+    //the permissions your facebook app needs from the user
+    const permissions = ["public_profile", "email"];
+
+    this.fb.login(permissions)
+    .then(response =>{
+      let userId = response.authResponse.userID;
+
+      //Getting name and gender properties
+      this.fb.api("/me?fields=name,email", permissions)
+      .then(user =>{
+        //user.picture = "https://graph.facebook.com/" + userId + "/picture?type=large";
+        //now we have the users info, let's save it in the NativeStorage
+
+        var formData = new FormData();
+        formData.append('n', user.name);
+        formData.append('u', user.email);
+        formData.append('p', '00000');
+        formData.append('i', '1234567');
+        formData.append('f', userId);
+        formData.append('t', '2');
+        this.apiService.postData(formData, 'access.php').then(result => {
+          loading.dismiss();
+          this.responseData = result;
+          this.accessResponse(this.responseData);
+        });
+      });
+
+    });
   }
 
   attemptUserLogin(){
@@ -82,24 +111,27 @@ export class LoginPage {
     this.apiService.postData(formData, 'access.php').then(result => {
         loading.dismiss();
         this.responseData = result;
-        if (this.responseData.status == "ok") {
-          let userArray = {
-            userId: this.responseData.user.id,
-            userEmail: this.responseData.user.email,
-            userName: this.responseData.user.name
-          };
-
-          this.storage.set(Constants.userLoggedInKey, userArray);
-          this.showLoginFailText = false;
-          this.events.publish('setBalance', '$' + parseFloat(this.responseData.user.amount).toFixed(2));
-          this.navCtrl.setRoot(HomePage);
-        }
-        else {
-          this.showLoginFailText = true;
-          this.loginFailText = (this.responseData.msg == 'no password' ?
-                                  'Contraseña incorrecta' : (this.responseData.msg == 'no user' ?
-                                                                'Este usuario no existe' : (this.responseData.msg == 'no platform' ? 'Plataforma incorrecta' : 'Error desconocido')));
-        }
+        this.accessResponse(this.responseData);
     });
+  }
+
+  accessResponse(_responseData){
+      if (_responseData.status == "ok") {
+        let userArray = {
+          userId: _responseData.user.id,
+          userEmail: _responseData.user.email,
+          userName: _responseData.user.name
+        };
+
+        this.storage.set(Constants.userLoggedInKey, userArray);
+        this.showLoginFailText = false;
+        this.events.publish('setBalance', '$' + parseFloat(_responseData.user.amount).toFixed(2));
+        this.navCtrl.setRoot(HomePage);
+      }
+      else {
+        this.showLoginFailText = true;
+        this.loginFailText = (_responseData.msg == 'no password' ? 'Contraseña incorrecta' : (_responseData.msg == 'no user' ? 'Este usuario no existe' : (_responseData.msg == 'no platform' ? 'Plataforma incorrecta' : 'Error desconocido')));
+      }
+    return ;
   }
 }

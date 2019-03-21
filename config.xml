@@ -93,4 +93,10 @@
     <plugin name="phonegap-nfc" spec="1.0.3">
         <variable name="NFC_USAGE_DESCRIPTION" value="Read NFC Tags" />
     </plugin>
+    <plugin name="cordova-plugin-facebook4" spec="4.2.1">
+        <variable name="APP_ID" value="260676854593763" />
+        <variable name="APP_NAME" value="PaymentApp" />
+        <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
+    </plugin>
 </widget>
