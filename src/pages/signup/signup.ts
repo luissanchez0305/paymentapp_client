@@ -134,6 +134,7 @@ export class SignupPage {
       });
     });
   }
+
   attemptUserRegister(){
     this.showDuplicateText = false;
     let loading = this.loadingCtrl.create({
