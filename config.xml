@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.esferasoluciones.paymentapp" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.esferasoluciones.paymentapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>RemPay</name>
     <description>App de pago remoto por pulsera</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
